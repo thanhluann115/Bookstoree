@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SANPHAMsController.cs" />
     <Compile Include="Controllers\THONGTINCANHANsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -326,6 +327,12 @@
     <Content Include="Views\AspNetUsers\Details.cshtml" />
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Index.cshtml" />
+    <Content Include="Views\SANPHAMs\Create.cshtml" />
+    <Content Include="Views\SANPHAMs\Delete.cshtml" />
+    <Content Include="Views\SANPHAMs\Details.cshtml" />
+    <Content Include="Views\SANPHAMs\Edit.cshtml" />
+    <Content Include="Views\SANPHAMs\Index.cshtml" />
+    <Content Include="Views\SANPHAMs\Index2.cshtml" />
     <None Include="Views\Shared\bookstore.cshtml" />
     <Content Include="style.css" />
     <Content Include="Web.config" />
@@ -371,6 +378,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="img\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
