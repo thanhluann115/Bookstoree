@@ -26,6 +26,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: DonHang
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var model = db.HOADONs.ToList();
