@@ -120,29 +120,36 @@ namespace WebApplication1.Controllers
         }
 
         // GET: SANPHAMs/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int MaSP)
         {
-            if (id == null)
+            if (MaSP == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SANPHAM sANPHAM = await db.SANPHAMs.FindAsync(id);
-            if (sANPHAM == null)
+            var model = db.SANPHAMs.Find(MaSP);
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(sANPHAM);
+            return View(model);
         }
-
         // POST: SANPHAMs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int MaSP)
         {
-            SANPHAM sANPHAM = await db.SANPHAMs.FindAsync(id);
-            db.SANPHAMs.Remove(sANPHAM);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            using (var scope = new TransactionScope())
+            {
+                var model = db.SANPHAMs.Find(MaSP);
+                db.SANPHAMs.Remove(model);
+                db.SaveChanges();
+
+                var path = Server.MapPath(PICTURE_PATH);
+                System.IO.File.Delete(path + model.MaSP);
+
+                scope.Complete();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)
