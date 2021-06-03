@@ -178,6 +178,7 @@
     <Compile Include="Controllers\AspNetRoleUsersController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
+    <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SANPHAMsController.cs" />
@@ -338,6 +339,9 @@
     <Content Include="Views\SANPHAMs\Edit.cshtml" />
     <Content Include="Views\SANPHAMs\Index.cshtml" />
     <Content Include="Views\SANPHAMs\Index2.cshtml" />
+    <Content Include="Views\DonHang\Create.cshtml" />
+    <Content Include="Views\DonHang\Index.cshtml" />
+    <Content Include="Views\DonHang\Delete.cshtml" />
     <None Include="Views\Shared\bookstore.cshtml" />
     <Content Include="style.css" />
     <Content Include="Web.config" />
@@ -388,6 +392,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
     <Folder Include="img\Products\" />
   </ItemGroup>
   <ItemGroup>
