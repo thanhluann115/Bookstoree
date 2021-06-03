@@ -25,20 +25,27 @@ namespace WebApplication1.Controllers
         {
             return View(await db.SANPHAMs.ToListAsync());
         }
-        // GET: SANPHAMs/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Search(string keyword)
         {
-            if (id == null)
+            var model = db.SANPHAMs.ToList();
+            model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())).ToList();
+            ViewBag.Keyword = keyword; return View("Index2", model);
+        }
+        // GET: SANPHAMs/Details/5
+        public ActionResult Details(int MaSP)
+        {
+            if (MaSP == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
-            SANPHAM sANPHAM = await db.SANPHAMs.FindAsync(id);
+            SANPHAM sANPHAM = db.SANPHAMs.Find(MaSP);
             if (sANPHAM == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
             return View(sANPHAM);
         }
+
 
         // GET: SANPHAMs/Create
         public ActionResult Create()
