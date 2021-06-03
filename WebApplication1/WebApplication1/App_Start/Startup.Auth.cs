@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.VanLang;
 using Owin;
 using WebApplication1.Models;
 
@@ -63,6 +63,7 @@ namespace WebApplication1
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+            app.UseVanLangAuthentication("https://fitlogin.vanlanguni.edu.vn/Login");
         }
     }
 }
