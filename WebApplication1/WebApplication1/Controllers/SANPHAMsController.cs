@@ -96,35 +96,45 @@ namespace WebApplication1.Controllers
         }
 
         // GET: SANPHAMs/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int MaSP)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SANPHAM sANPHAM = await db.SANPHAMs.FindAsync(id);
-            if (sANPHAM == null)
+
+            var model = db.SANPHAMs.Find(MaSP);
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(sANPHAM);
+            return View(model);
         }
 
         // POST: SANPHAMs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "MaSP,TenSP,TacGia,NamSX,NhaSX,LoaiSP,Gia,Noidung,NgayThem")] SANPHAM sANPHAM)
+        public ActionResult Edit(SANPHAM model, HttpPostedFileBase Picture)
         {
+            ValidateProduct(model);
             if (ModelState.IsValid)
             {
-                db.Entry(sANPHAM).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    db.Entry(model).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    if (Picture != null)
+                    {
+                        var path = Server.MapPath(PICTURE_PATH);
+                        Picture.SaveAs(path + model.MaSP);
+                    }
+
+                    scope.Complete();
+                    return RedirectToAction("Index");
+                }
             }
-            return View(sANPHAM);
+            return View(model);
         }
+
 
         // GET: SANPHAMs/Delete/5
         public ActionResult Delete(int MaSP)
