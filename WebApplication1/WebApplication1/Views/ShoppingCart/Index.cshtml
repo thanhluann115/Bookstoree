@@ -1,0 +1,108 @@
+﻿@model IEnumerable<WebApplication1.Models.CHITIETGIOHANG>
+
+@{
+    ViewBag.Title = "Index";
+    var CartSubtotal = 0;
+}
+
+<h2>CHI TIẾT GIỎ HÀNG</h2>
+
+<div class="product-content-right">
+    <div class="woocommerce">
+        @using (Html.BeginForm("Edit", "ShoppingCart"))
+        {
+
+
+            <table cellspacing="0" class="shop_table cart">
+                <thead>
+                    <tr>
+                        <th class="product-remove">Xóa </th>
+                        <th class="product-thumbnail">Hình ảnh </th>
+                        <th class="product-name"> Tên Sản phẩm</th>
+                        <th class="product-price">Giá</th>
+                        <th class="product-quantity">Số lượng</th>
+                        <th class="product-subtotal">Tổng tiền</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        CartSubtotal += item.SANPHAM.Gia.Value * item.SoLuong;
+                        <tr class="cart_item">
+                            <td class="product-remove">
+                                <a class="cart-item__action" href="#">×</a>
+
+                            </td>
+
+                            <td class="product-thumbnail">
+                                <a href="single-product.html">
+                                    <img width="150" height="158" alt="poster_1_up" class="shop_thumbnail"
+                                         src="@Url.Action("Picture", "SANPHAMs", new { item.SANPHAM.MaSP })" arl="">
+                                </a>
+                            </td>
+                            <td class="product-name">
+                                <a href="@Url.Action("Details", "SANPHAMs", new { item.SANPHAM.MaSP })">@item.SANPHAM.TenSP</a>
+                            </td>
+
+                            <td class="product-price">
+                                <span class="amount">@item.SANPHAM.Gia vnđ </span>
+                            </td>
+                            <td class="product-quantity">
+                                <div class="quantity buttons_added">
+                                    @Html.Hidden("SANPHAM_MaSP", item.SANPHAM.MaSP)
+                                    
+                                    <input type="number" size="4" title="SốLượng" name="SoLuong" value="@item.SoLuong" min="0" max="10">
+                                    
+                                </div>
+                            </td>
+                            <td class="product-subtotal">
+                                <span class="amount">@(item.SANPHAM.Gia * item.SoLuong)vnđ </span>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td class="actions" colspan="3">
+                            <a type="submit" class="btn-1" href="@Url.Action("Index2", "SANPHAMs")"> Continute Shopping</a>
+                        </td>
+                        <td class="actions" colspan="3">
+                            <a type="submit" class="btn-1" href="@Url.Action("Delete", "ShoppingCart")"> Clear Cart</a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tr>
+                    <input type="submit" class="btn-1" value="Update Cart" />
+                </tr>
+            </table>
+        }
+        <div class="cart-collaterals">
+            <div class="cart_totals ">
+                <h2>Cart Totals</h2>
+
+                <table cellspacing="0">
+                    <tbody>
+                        <tr class="cart-subtotal">
+                            <th>Cart Subtotal</th>
+                            <td><span class="amount">@CartSubtotal</span> vnd </td>
+                        </tr>
+
+                        <tr class="shipping">
+                            <th>Shipping and Handling</th>
+                            <td>Free Shipping</td>
+                        </tr>
+
+                        <tr class="order-total">
+                            <th>Order Total</th>
+                            <td><strong><span class="amount">#</span></strong> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
