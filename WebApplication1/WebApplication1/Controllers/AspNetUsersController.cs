@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -80,6 +81,7 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(AspNetUser aspNetUser)
         {
+            checkUser(aspNetUser);
             if (ModelState.IsValid)
             {
                 var user = db.AspNetUsers.Find(aspNetUser.Id);
@@ -93,6 +95,17 @@ namespace WebApplication1.Controllers
             return View(aspNetUser);
         }
 
+        public void checkUser(AspNetUser aspNetUser)
+        {
+            if (aspNetUser.PhoneNumber == null)
+            {
+                ModelState.AddModelError("", "Thông tin chưa nhập đầy đủ");
+            }
+            else if (aspNetUser.PhoneNumber.Trim().Length < 10 || aspNetUser.PhoneNumber.Length >10)
+            {
+                ModelState.AddModelError("", "Số điện thoại bắt buộc 10 chữ số");
+            }
+        }
         // GET: AspNetUsers/Delete/5
         public ActionResult Delete(string id)
         {
