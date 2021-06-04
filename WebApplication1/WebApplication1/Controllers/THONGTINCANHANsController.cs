@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
@@ -85,13 +86,10 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(THONGTINCANHAN tHONGTINCANHAN)
         {
+            checktextbox(tHONGTINCANHAN);
             if (ModelState.IsValid)
             {
-                var updatettcanhan = db.THONGTINCANHANs.Find(tHONGTINCANHAN.id);
-                updatettcanhan.NgaySinh = tHONGTINCANHAN.NgaySinh;
-                updatettcanhan.SDT = tHONGTINCANHAN.SDT;
-                updatettcanhan.Ten = tHONGTINCANHAN.Ten;
-                updatettcanhan.GioiTinh = tHONGTINCANHAN.GioiTinh;
+                db.Entry(tHONGTINCANHAN).State = EntityState.Modified;
                 var user = db.AspNetUsers.Find(tHONGTINCANHAN.id);
                 user.PhoneNumber = tHONGTINCANHAN.SDT;
                 db.SaveChanges();
@@ -100,7 +98,35 @@ namespace WebApplication1.Controllers
             ViewBag.id = new SelectList(db.AspNetUsers, "Id", "Email", tHONGTINCANHAN.id);
             return View(tHONGTINCANHAN);
         }
+        public void checktextbox(THONGTINCANHAN tHONGTINCANHAN)
+        {
+            var regexItem = new Regex("^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ]");
+            var diachi = new Regex("^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ]");
+            var sdt = new Regex("^[0-9]*$");
+            if (tHONGTINCANHAN.Ten == null || tHONGTINCANHAN.SDT == null || tHONGTINCANHAN.GioiTinh == null || tHONGTINCANHAN.NgaySinh == null)
+            {
+                ModelState.AddModelError("", "Thông tin chưa nhập đầy đủ");
+            }
+            else if(regexItem.IsMatch(tHONGTINCANHAN.Ten)==false)
+            {
+                ModelState.AddModelError("", "Tên có chứ số và kí tự đặc biệt");
+            }
+            else if(tHONGTINCANHAN.Ten.Trim().Length == 0)
+            {
+                ModelState.AddModelError("", "Tên chỉ chứa khoảng trắng");
+            }
+            else if(regexItem.IsMatch(tHONGTINCANHAN.GioiTinh)==null)
+            {
+                ModelState.AddModelError("", "Giới tính có chứa số và kí tự đặc biệt");
+            }
+            else if(tHONGTINCANHAN.GioiTinh.Trim().Length==0)
+            {
+                ModelState.AddModelError("", "Giới tính chỉ chứa khoảng trắng");
+            }
 
+
+
+        }
 
         protected override void Dispose(bool disposing)
         {
