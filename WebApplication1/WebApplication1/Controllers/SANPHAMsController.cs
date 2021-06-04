@@ -12,6 +12,7 @@ using System.Transactions;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SANPHAMsController : Controller
     {
         private CT25Team15Entities db = new CT25Team15Entities();
@@ -21,6 +22,7 @@ namespace WebApplication1.Controllers
         {
             return View(await db.SANPHAMs.ToListAsync());
         }
+        [AllowAnonymous]
         public async Task<ActionResult> Index2()
         {
             return View(await db.SANPHAMs.ToListAsync());
