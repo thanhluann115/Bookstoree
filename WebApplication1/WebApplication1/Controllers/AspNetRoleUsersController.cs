@@ -10,6 +10,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AspNetRoleUserController : Controller
     {
         private CT25Team15Entities db = new CT25Team15Entities();

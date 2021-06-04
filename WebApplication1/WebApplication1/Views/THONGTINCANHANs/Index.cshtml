@@ -4,8 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>THONG TIN KHÁCH HÀNG </h2>
+<tr>
+    <td>
+        <a class="button-radius" href="@Url.Action("index" ,"AspNetUsers")"> TÀI KHOẢN KHÁCH HÀNG</a> |
+        <a class="button-radius" href="@Url.Action("Index","THONGTINCANHANs")">THÔNG TIN KHÁCH HÀNG </a> |
+        <a class="button-radius" href="@Url.Action("index","SANPHAMs")">SẢN PHẨM </a> |
+        <a class="button-radius" href="@Url.Action("index","DonHang")">ĐƠN HÀNG </a>|
+    </td>
+</tr>
 <table class="table">
     <tr>
         <th>

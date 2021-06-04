@@ -64,7 +64,17 @@ namespace WebApplication1.Controllers
             });
             return RedirectToAction("Index");
         }
-
+        public ActionResult Created(FormCollection form)
+        {
+            int MaSP = int.Parse(form["MaSP"]);
+            var sANPHAM = db.SANPHAMs.Find(MaSP);
+            ShoppingCart.Add(new CHITIETGIOHANG
+            {
+                SANPHAM = sANPHAM,
+                SoLuong = 1
+            });
+            return RedirectToAction("Index");
+        }
 
         // GET: ShoppingCart/Edit/5
         [HttpPost]

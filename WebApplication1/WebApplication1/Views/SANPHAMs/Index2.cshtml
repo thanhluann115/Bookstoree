@@ -95,14 +95,20 @@
                                         <img src="@Url.Action("Picture","SANPHAMs", new { sANPHAM.MaSP})" width="1950px" height="1300px" alt="Demo picture">
                                     </a>
                                     <div class="product-hover">
-                                        <a href="@Url.Action("Index", "ShoppingCart")" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Thêm Vào Giỏ Hàng</a>
+                                        @using (Html.BeginForm("Created", "ShoppingCart"))
+                                        {
+
+
+                                            <input type="hidden" name="MaSP" value="@sANPHAM.MaSP" />
+                                            <a class="add-to-cart-link">  <input style="width: auto" type="submit" class="fa fa-shopping-cart" value="add to cart" /> </a>
+                                        }
                                         <div class="product-hover">
-                                            <a href="@Url.Action("Details",new { sANPHAM.MaSP})" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
+                                            <a href="@Url.Action("Details", new { sANPHAM.MaSP })" class="view-details-link"><i class="fa fa-link"></i> Xem Chi Tiết</a>
                                         </div>
                                     </div>
                                 </div>
 
-                                <h2><a href="@Url.Action("Details","SANPHAMs",new { sANPHAM.MaSP})">@sANPHAM.TenSP</a></h2>
+                                <h2><a href="@Url.Action("Details", "SANPHAMs", new { sANPHAM.MaSP })">@sANPHAM.TenSP</a></h2>
 
                                 <div class="product-carousel-price">
                                     <p>@sANPHAM.Gia VNĐ</p>
