@@ -94,7 +94,7 @@ namespace WebApplication1.Controllers
             if (ShoppingCart.Count == 0)
                 ModelState.AddModelError("", "there is no item  in shopping cart");
             if (!regex.IsMatch(model.SDT.ToString()))
-                ModelState.AddModelError("SDT.ToString", " Sai So ");
+                ModelState.AddModelError("SDT.ToString", " Wrong phone number ");
 
 
         }

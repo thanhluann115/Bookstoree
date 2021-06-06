@@ -29,6 +29,9 @@
             @Html.DisplayNameFor(model => model.NgayLapHD)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.SDT)
         </th>
 
@@ -37,25 +40,28 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaHD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenKH)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayLapHD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SDT)
-            </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaHD)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TenKH)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgayLapHD)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaChi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SDT)
+    </td>
 
-            <td>
+    <td>
 
-                @Html.ActionLink("Delete", "Delete", new { item.MaHD })
-            </td>
-        </tr>
+        @Html.ActionLink("Delete", "Delete", new { item.MaHD })
+    </td>
+</tr>
     }
 
 </table>
