@@ -1,184 +1,168 @@
 ﻿@using WebApplication1.Models
 @model WebApplication1.Models.HOADON
 
+
+
 @{
     ViewBag.Title = "Create";
     var Cart = ViewBag.Cart as List<CHITIETGIOHANG>;
 
+
+
 }
+
+
 
 
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-
-
-            </div>
-
-
-
-
-            <div class="col-md-8">
-                <div class="product-content-right">
-                    <div class="woocommerce">
-
-
-                        <form id="login-form-wrap" class="login collapse" method="post">
-
-
-                            <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing &amp; Shipping section.</p>
-
-                            <p class="form-row form-row-first">
-                                <label for="username">
-                                    Username or email <span class="required">*</span>
-                                </label>
-                                <input type="text" id="username" name="username" class="input-text">
-                            </p>
-                            <p class="form-row form-row-last">
-                                <label for="password">
-                                    Password <span class="required">*</span>
-                                </label>
-                                <input type="password" id="password" name="password" class="input-text">
-                            </p>
-                            <div class="clear"></div>
-
-
-                            <p class="form-row">
-                                <input type="submit" value="Login" name="login" class="button">
-                                <label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme" name="rememberme"> Remember me </label>
-                            </p>
-                            <p class="lost_password">
-                                <a href="#">Lost your password?</a>
-                            </p>
-
-                            <div class="clear"></div>
-                        </form>
-
-
-
-                        <form id="coupon-collapse-wrap" method="post" class="checkout_coupon collapse">
-
-                            <p class="form-row form-row-first">
-                                <input type="text" value="" id="coupon_code" placeholder="Coupon code" class="input-text" name="coupon_code">
-                            </p>
-
-                            <p class="form-row form-row-last">
-                                <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
-                            </p>
-
-
-                        </form>
-                        <!-- Start Chi tiết đơn hàng -->
-                        <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
-                            @using (Html.BeginForm("Create", "DonHang", FormMethod.Post, new { @class = "checkout" }))
-                            {
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                @Html.AntiForgeryToken()
-
-
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Họ tên</label>
-                                    <div class="col-md-10">
-
-                                        @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", requaired = true } })
-                                        @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
-                                    </div>
-                                    <br>
-                                    <br>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Số điện thoại</label>
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", requaired = true } })
-                                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
-                                    </div>
-                                    <br>
-                                    <br>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Dia chi</label>
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control", requaired = true } })
-                                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
-                                    </div>
-                                    <br>
-                                    <br>
-                                </div>
 
 
 
 
 
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Place Order" class="btn btn-default" />
-                                    </div>
-                                </div>
-                                <br>
-                                <br>
-                            }
-                        </form>
-
-                        <!-- End Chi tiết đơn hàng -->
-                        <br />
-                        <h3 id="order_review_heading">Đơn hàng của bạn</h3>
-
-                        <div id="order_review" style="position: relative;">
-                            <table class="shop_table">
-                                <thead>
-                                    <tr>
-                                        <th class="product-name">Sản phẩm</th>
-                                        <th class="product-total">Số lượng</th>
-                                        <th class="product-total">Tổng tiền</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Cart)
-                                    {
-                                        <tr class="cart_item">
-                                            <td class="product-total">
-                                                <span class="amount">  @item.SANPHAM.TenSP</span>
-                                            </td>
-
-                                            <td class="product-name">
-                                                <sapm class="product-quantity">@item.SoLuong</sapm>
 
 
-                                            </td>
-
-                                            <td class="product-total">
-                                                <span class="amount">@(item.SANPHAM.Gia * item.SoLuong)VND  </span>
-                                            </td>
-                                        </tr>
-
-                                    }
-
-
-                                </tbody>
-                                <tfoot>
+            <h3 id="order_review_heading">Nhập thông tin của bạn</h3>
+            <!-- Start Chi tiết đơn hàng -->
+            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+                @using (Html.BeginForm("Create", "DonHang", FormMethod.Post, new { @class = "checkout" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
 
 
 
 
 
-                                    <tr class="order-total">
-                                        <th>Tổng</th>
-                                        <td> <strong> <span class="amount">@(Cart.Sum(c => c.SoLuong) )</span> </td> </strong> </td>
-                                        <td> <strong> <span class="amount">@(Cart.Sum(c => c.SANPHAM.Gia * c.SoLuong )) VND</span> </strong> </td>
-                                    </tr>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Họ tên</label>
+                        <div class="col-md-10">
 
-                                </tfoot>
-                            </table>
+
+
+                            @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", requaired = true } })
+                            @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Số điện thoại</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", requaired = true } })
+                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Địa Chỉ</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control", requaired = true } })
+                            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Place Order" class="btn btn-default" />
                         </div>
                     </div>
-                </div>
+                    <br>
+                    <br>
+                }
+            </form>
+
+
+
+            <!-- End Chi tiết đơn hàng -->
+            <br />
+            <h3 id="order_review_heading">Đơn hàng của bạn</h3>
+
+
+
+            <div id="order_review" style="position: relative;">
+                <table class="shop_table">
+                    <thead>
+                        <tr>
+                            <th class="product-name">Sản phẩm</th>
+                            <th class="product-total">Số lượng</th>
+                            <th class="product-total">Tổng tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Cart)
+                        {
+                            <tr class="cart_item">
+                                <td class="product-total">
+                                    <span class="amount"> @item.SANPHAM.TenSP</span>
+                                </td>
+
+
+
+                                <td class="product-name">
+                                    <sapm class="product-quantity">@item.SoLuong</sapm>
+
+
+
+
+                                </td>
+
+
+
+                                <td class="product-total">
+                                    <span class="amount">@(item.SANPHAM.Gia * item.SoLuong)VND </span>
+                                </td>
+                            </tr>
+
+
+
+                        }
+
+
+
+
+                    </tbody>
+                    <tfoot>
+
+
+
+
+
+
+
+                        <tr class="order-total">
+                            <th>Tổng</th>
+                            <td> <strong> <span class="amount">@(Cart.Sum(c => c.SoLuong) )</span> </td> </strong> </td>
+                            <td> <strong> <span class="amount">@(Cart.Sum(c => c.SANPHAM.Gia * c.SoLuong )) VND</span> </strong> </td>
+                        </tr>
+
+
+
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
 </div>
