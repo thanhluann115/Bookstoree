@@ -12,11 +12,12 @@ using System.Transactions;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   
     public class SANPHAMsController : Controller
     {
         private CT25Team15Entities db = new CT25Team15Entities();
 
+        [Authorize(Roles = "Admin")]
         // GET: SANPHAMs
         public async Task<ActionResult> Index()
         {
@@ -27,13 +28,14 @@ namespace WebApplication1.Controllers
         {
             return View(await db.SANPHAMs.ToListAsync());
         }
+        [AllowAnonymous]
         public ActionResult Search(string keyword)
         {
             var model = db.SANPHAMs.ToList();
             model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())).ToList();
             ViewBag.Keyword = keyword; return View("Index2", model);
         }
-        // GET: SANPHAMs/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int MaSP)
         {
             if (MaSP == null)
@@ -85,12 +87,15 @@ namespace WebApplication1.Controllers
 
             return View(model);
         }
+        
         private const string PICTURE_PATH = "~/img/Products/";
+        [AllowAnonymous]
         public ActionResult picture(int MaSP)
         {
             var path = Server.MapPath(PICTURE_PATH);
             return File(path + MaSP, "images");
         }
+       
         private void ValidateProduct(SANPHAM model)
         {
             if (model.Gia < 0)
