@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using System.Transactions;
+using System.Text.RegularExpressions;
 
 namespace WebApplication1.Controllers
 {
@@ -32,8 +33,8 @@ namespace WebApplication1.Controllers
         public ActionResult Search(string keyword)
         {
             var model = db.SANPHAMs.ToList();
-            model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())).ToList();
-            ViewBag.Keyword = keyword; return View("Index2", model);
+            model = model.Where(m => m.TenSP.ToLower().Contains(keyword)).ToList();
+            ViewBag.keyword = keyword; return View("Index2", model);
         }
         [AllowAnonymous]
         public ActionResult Details(int MaSP)
@@ -64,6 +65,7 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(SANPHAM model, HttpPostedFileBase Picture)
         {
+            checkSP(model);
             ValidateProduct(model);
             if (ModelState.IsValid)
             {
@@ -105,7 +107,7 @@ namespace WebApplication1.Controllers
         // GET: SANPHAMs/Edit/5
         public ActionResult Edit(int MaSP)
         {
-
+            
             var model = db.SANPHAMs.Find(MaSP);
             if (model == null)
             {
@@ -121,6 +123,7 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SANPHAM model, HttpPostedFileBase Picture)
         {
+            checkSP(model);
             ValidateProduct(model);
             if (ModelState.IsValid)
             {
@@ -175,7 +178,72 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        public void checkSP(SANPHAM sANPHAM)
+        {
+            var regexItem = new Regex("^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ ]*$");
+            var so = new Regex("^[0-9]*$");
+            if (sANPHAM.MaSP == null || sANPHAM.TenSP == null || sANPHAM.TacGia == null || sANPHAM.NamSX == null || sANPHAM.NhaSX == null || sANPHAM.LoaiSP == null || sANPHAM.Gia == null || sANPHAM.Noidung == null)
+            {
+                ModelState.AddModelError("", "Thông tin chưa nhập đầy đủ");
+            }
+            else if (sANPHAM.TenSP.Trim().Length == 0)
+            {
+                ModelState.AddModelError("", "Tên sản phẩm không được chứa khoảng trống");
+            }
+            else if (sANPHAM.TacGia.Trim().Length == 0)
+            {
+                ModelState.AddModelError("", "Tác giả không được chứa khoảng trống");
+            }
+            else if (sANPHAM.NamSX.Trim().Length == 0)
+            {
+                ModelState.AddModelError("", "Năm sản xuất không được chứa khoảng trống");
+            }
+            else if (sANPHAM.NhaSX.Trim().Length == 0)
+            {
+                ModelState.AddModelError("", "Nhà sản xuất không được chứa khoảng trống");
+            }
+            else if (sANPHAM.LoaiSP.Trim().Length == 0)
+            {
+                ModelState.AddModelError("", "Loại sản phẩm không được chứa khoảng trống");
+            }
+            else if (sANPHAM.Noidung.Trim().Length == 0)
+            {
+                ModelState.AddModelError("", "Nội dung không được chứa khoảng trống");
+            }
+            else if (regexItem.IsMatch(sANPHAM.TenSP) == false)
+            {
+                ModelState.AddModelError("", "Tên sản phẩm không được chứa kí tự đặc biệt");
+            }
+            else if (regexItem.IsMatch(sANPHAM.TacGia) == false)
+            {
+                ModelState.AddModelError("", "Tác giả không được chứa kí tự đặc biệt");
+            }
+            else if (regexItem.IsMatch(sANPHAM.NhaSX) == false)
+            {
+                ModelState.AddModelError("", "Nhà sản xuất không được chứa kí tự đặc biệt");
+            }
+            else if (regexItem.IsMatch(sANPHAM.LoaiSP) == false)
+            {
+                ModelState.AddModelError("", "Loại sản phẩm không được chứa kí tự đặc biệt");
+            }
+            else if (regexItem.IsMatch(sANPHAM.TenSP) == false)
+            {
+                ModelState.AddModelError("", "Tên sản phẩm không được chứa kí tự đặc biệt");
+            }
+            else if (so.IsMatch(sANPHAM.NamSX) == false)
+            {
+                ModelState.AddModelError("", "Năm sản xuất chỉ chứa số");
+            }
+            else if (sANPHAM.MaSP < 0)
+            {
+                ModelState.AddModelError("", "Mã sản phẩm không được âm");
+            }
+            else if (sANPHAM.MaSP < 0 || sANPHAM.MaSP > 10000)
+            {
+                ModelState.AddModelError("", "Mã sản phẩm không được nhập quá 5 số");
+            }
+            
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
