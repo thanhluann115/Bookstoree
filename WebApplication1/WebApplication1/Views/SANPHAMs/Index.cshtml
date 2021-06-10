@@ -48,7 +48,9 @@
         <th class="col-md-3">
             Nội Dung
         </th>
-
+        <th>
+            Số Lượng
+        </th>
         <th class="col-md-2">
             Hình Ảnh
         </th>
@@ -93,7 +95,9 @@
                     @item.Noidung
                 }
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
             <td>
                 <img class="col-md-10" src="@Url.Action("picture", new { item.MaSP})" width="37px" height="40px" />
             </td>

@@ -157,6 +157,7 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <Property Name="Gia" Type="int" />
           <Property Name="Noidung" Type="nvarchar(max)" Nullable="false" />
           <Property Name="NgayThem" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="SoLuong" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -540,6 +541,7 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
           <Property Name="Gia" Type="Int32" />
           <Property Name="Noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgayThem" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="SoLuong" Type="Int32" />
           <NavigationProperty Name="CHITIETGIOHANGs" Relationship="Self.fk_CHITIETGIOHANG_SANPHAM" FromRole="SANPHAM" ToRole="CHITIETGIOHANG" />
           <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.fk_CHITIETHOADON_SANPHAM" FromRole="SANPHAM" ToRole="CHITIETHOADON" />
           <NavigationProperty Name="DANHMUCSANPHAMs" Relationship="Self.fk_SANPHAM_DANHMUCSANPHAM" FromRole="SANPHAM" ToRole="DANHMUCSANPHAM" />
@@ -895,6 +897,7 @@ warning 6002: The table/view 'CT25Team15.dbo.DANHMUCSANPHAM' does not have a pri
                 <ScalarProperty Name="Gia" ColumnName="Gia" />
                 <ScalarProperty Name="Noidung" ColumnName="Noidung" />
                 <ScalarProperty Name="NgayThem" ColumnName="NgayThem" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

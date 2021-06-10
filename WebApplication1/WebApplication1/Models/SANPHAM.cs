@@ -31,6 +31,7 @@ namespace WebApplication1.Models
         public Nullable<int> Gia { get; set; }
         public string Noidung { get; set; }
         public byte[] NgayThem { get; set; }
+        public Nullable<int> SoLuong { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETGIOHANG> CHITIETGIOHANGs { get; set; }

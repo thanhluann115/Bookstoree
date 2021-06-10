@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3eb801b339904e0f991680027879bf47" Name="Diagram1">
+      <Diagram DiagramId="e3c729517f764c6fb8de7d3945d1aa6f" Name="Diagram1">
         <EntityTypeShape EntityType="CT25Team15Model.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team15Model.AspNetRole" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team15Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="CT25Team15Model.GIOHANG" Width="1.5" PointX="7.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team15Model.HOADON" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team15Model.KHACHHANG" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team15Model.SANPHAM" Width="1.5" PointX="7.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team15Model.SANPHAM" Width="1.5" PointX="7.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team15Model.sysdiagram" Width="1.5" PointX="12.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team15Model.THONGTINCANHAN" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team15Model.DANHMUCSANPHAM" Width="1.5" PointX="10" PointY="11" IsExpanded="true" />

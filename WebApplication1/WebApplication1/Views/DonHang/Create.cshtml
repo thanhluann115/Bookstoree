@@ -83,7 +83,12 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
+
+                            @Html.TextBoxFor(model => model.TongTien, new { @Value = (Cart.Sum(c => c.SANPHAM.Gia * c.SoLuong)),   @class = "hidden" })
+                        
                             <input type="submit" value="Place Order" class="btn btn-default" />
+
+
                         </div>
                     </div>
                     <br>

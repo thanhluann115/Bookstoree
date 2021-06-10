@@ -60,16 +60,19 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(HOADON model)
         {
-            int tongtien = 0;
+            
             ValidateBill(model);
 
             int chieudai = ranDom(7);
             model.MaHD = chieudai;
             model.NgayLapHD = DateTime.Now;
-            model.TongTien = tongtien.ToString();
-
+           
+           
+            db.HOADONs.Add(model);
+            db.SaveChanges();
             foreach (var item in ShoppingCart)
             {
+           
                 db.CHITIETHOADONs.Add(new CHITIETHOADON
                 {
                     MaHD = chieudai,
@@ -77,10 +80,13 @@ namespace WebApplication1.Controllers
                     SoLuongSP = item.SoLuong,
 
                 });
-                tongtien += int.Parse(item.SANPHAM.Gia.ToString()) * item.SoLuong;
+                
+                
+                    var updatesoluong1 = db.SANPHAMs.FirstOrDefault(c => c.MaSP == item.SANPHAM.MaSP);
+                    updatesoluong1.SoLuong = updatesoluong1.SoLuong.Value - item.SoLuong;
+                db.SaveChanges();
             }
-            db.HOADONs.Add(model);
-            db.SaveChanges();
+            
             Session["ShoppingCart"] = null;
             ShoppingCartController();
             ViewBag.Cart = ShoppingCart;

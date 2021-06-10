@@ -34,6 +34,10 @@
         <th>
             @Html.DisplayNameFor(model => model.SDT)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TongTien)
+        </th>
+
 
         <th></th>
     </tr>
@@ -56,13 +60,15 @@
     <td>
         @Html.DisplayFor(modelItem => item.SDT)
     </td>
-
+    <td>
+        @Html.DisplayFor(modelItem => item.TongTien)
+    </td>
     <td>
 
         @Html.ActionLink("Delete", "Delete", new { item.MaHD })
     </td>
     <td>
-        
+
         <a href="~/CHITIETHOADONs/Details/@item.MaHD"> Xem chi tiết</a>
     </td>
 </tr>

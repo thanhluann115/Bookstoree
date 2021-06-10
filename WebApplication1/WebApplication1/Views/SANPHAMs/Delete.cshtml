@@ -77,6 +77,14 @@
         <dt>
             Hình Ảnh
         </dt>
+        <dt>
+            Số Lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
         <dd>
             <img src="@Url.Action("Picture", new { Model.MaSP})" alt="Ảnh Sản Phẩm" " width="500px" height="500px" />
         </dd>
