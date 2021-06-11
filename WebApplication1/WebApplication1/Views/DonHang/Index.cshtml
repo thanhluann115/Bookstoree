@@ -49,13 +49,13 @@
         @Html.DisplayFor(modelItem => item.MaHD)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.TenKH)
+        @MvcHtmlString.Create(item.TenKH)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.NgayLapHD)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.DiaChi)
+        @MvcHtmlString.Create(item.DiaChi)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.SDT)

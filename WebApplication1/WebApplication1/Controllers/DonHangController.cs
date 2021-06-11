@@ -60,7 +60,7 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(HOADON model)
         {
-            
+            checkDH(model);
             ValidateBill(model);
 
             int chieudai = ranDom(7);
@@ -103,6 +103,34 @@ namespace WebApplication1.Controllers
                 ModelState.AddModelError("SDT.ToString", " Wrong phone number ");
 
 
+        }
+        public void checkDH(HOADON hOADON)
+        {
+            var regexItem = new Regex("^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ ]*$");
+            if (hOADON.TenKH == null || hOADON.SDT == null || hOADON.DiaChi == null)
+            {
+                ModelState.AddModelError("", "Thông tin chưa nhập đầy đủ");
+            }
+            else if(hOADON.TenKH.Trim().Length == 0)
+            {
+                ModelState.AddModelError("", "Họ tên không được chứa khoảng trống");
+            }
+            else if (regexItem.IsMatch(hOADON.TenKH) == false)
+            {
+                ModelState.AddModelError("", "Họ tên không được chứa kí tự đặc biệt");
+            }
+            else if (hOADON.SDT.ToString().Length < 10 || hOADON.SDT.ToString().Length > 10)
+            {
+                ModelState.AddModelError("", "Số điện thoại bắt buộc 10 chữ số");
+            }
+            else if (hOADON.DiaChi.Trim().Length == 0)
+            {
+                ModelState.AddModelError("", "Địa chỉ không được chứa khoảng trống");
+            }
+            else if (regexItem.IsMatch(hOADON.DiaChi) == false)
+            {
+                ModelState.AddModelError("", "Địa chỉ không được chứa kí tự đặc biệt");
+            }
         }
         public int ranDom(int chieudai)
         {

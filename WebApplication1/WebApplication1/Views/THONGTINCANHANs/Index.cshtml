@@ -42,13 +42,13 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Ten)
+                @MvcHtmlString.Create(item.Ten)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NgaySinh)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GioiTinh)
+                @MvcHtmlString.Create(item.GioiTinh)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SDT)

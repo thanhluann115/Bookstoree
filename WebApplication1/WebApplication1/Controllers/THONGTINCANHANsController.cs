@@ -113,7 +113,7 @@ namespace WebApplication1.Controllers
             }
             else if(tHONGTINCANHAN.Ten.Trim().Length == 0)
             {
-                ModelState.AddModelError("", "Tên chỉ chứa khoảng trắng");
+                ModelState.AddModelError("", "Tên chứa khoảng trắng");
             }
             else if(regexItem.IsMatch(tHONGTINCANHAN.GioiTinh)==null)
             {
@@ -121,7 +121,7 @@ namespace WebApplication1.Controllers
             }
             else if(tHONGTINCANHAN.GioiTinh.Trim().Length==0)
             {
-                ModelState.AddModelError("", "Giới tính chỉ chứa khoảng trắng");
+                ModelState.AddModelError("", "Giới tính chứa khoảng trắng");
             }
 
 

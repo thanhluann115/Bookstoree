@@ -65,16 +65,17 @@
                 @Html.DisplayFor(modelItem => item.MaSP)
             </td>
             <td>
-                <a href="@Url.Action("Details" ,new {item.MaSP}) target="_blank"> @Html.DisplayFor(modelItem => item.TenSP)</a>
+                <a href="@Url.Action("Details" ,new {item.MaSP}) target="_blank"> @MvcHtmlString.Create(item.TenSP)</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TacGia)
+                @MvcHtmlString.Create(item.TacGia)
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NamSX)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NhaSX)
+                @MvcHtmlString.Create(item.NhaSX)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LoaiSP)
@@ -88,6 +89,7 @@
             <td class="col-md-3">
                 @if (item.Noidung != null && item.Noidung.Length > 100)
                 {
+                    @MvcHtmlString.Create(item.Noidung)
                     @item.Noidung.Substring(0, 100)
                 }
                 else
