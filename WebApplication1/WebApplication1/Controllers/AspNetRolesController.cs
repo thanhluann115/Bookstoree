@@ -15,6 +15,7 @@ namespace WebApplication1.Controllers
         private CT25Team15Entities db = new CT25Team15Entities();
 
         // GET: AspNetRoles
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.AspNetRoles.ToList());

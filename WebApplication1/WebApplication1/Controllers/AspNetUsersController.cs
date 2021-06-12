@@ -14,7 +14,7 @@ namespace WebApplication1.Controllers
     public class AspNetUsersController : Controller
     {
         private CT25Team15Entities db = new CT25Team15Entities();
-
+        [Authorize(Roles = "Admin")]
         // GET: AspNetUsers
         public ActionResult Index()
         {

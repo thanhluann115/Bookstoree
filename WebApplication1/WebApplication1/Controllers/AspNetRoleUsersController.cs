@@ -14,7 +14,7 @@ namespace WebApplication1.Controllers
     public class AspNetRoleUserController : Controller
     {
         private CT25Team15Entities db = new CT25Team15Entities();
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(string roleId)
         {
             ViewBag.Role = db.AspNetRoles.Find(roleId);

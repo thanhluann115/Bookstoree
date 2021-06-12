@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
         public ActionResult Search(string keyword)
         {
             var model = db.SANPHAMs.ToList();
-            model = model.Where(m => m.TenSP.ToLower().Contains(keyword)).ToList();
+            model = model.Where(m => m.TenSP.ToLower().Contains(keyword.ToLower())).ToList();
             ViewBag.keyword = keyword; return View("Index2", model);
         }
         [AllowAnonymous]
